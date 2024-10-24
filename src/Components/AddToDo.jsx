@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-const AddToDo = () => {
+const AddToDo = ({myProp}) => {
   const [list, setList] = useState([]);
   const [todo, setTodo] = useState();
 
   const add = () => {
     if (todo !== ""){
-    setList([...list, todo]);
+    // setList([...list, todo]);
+    myProp.addToDo(todo);
     setTodo("");}
   };
 
@@ -32,8 +33,8 @@ const AddToDo = () => {
         </span>
       </div>
       <div className="list">
-        {list.map((element, index) => {
-          return <div className="items" key={index}>{element}</div>;
+        {myProp.todoArray.map((element) => {
+          return <div className="items" key={element.id}>{element.item}</div>;
         })}
       </div>
     </div>
