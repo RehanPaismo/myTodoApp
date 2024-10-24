@@ -1,8 +1,9 @@
+import { observer } from "mobx-react";
 import React, { useState } from "react";
 import "./styles.css";
 
-const AddToDo = ({myProp}) => {
-  const [list, setList] = useState([]);
+const AddToDo = observer (({myProp}) => {
+  // const [list, setList] = useState([]);
   const [todo, setTodo] = useState();
 
   const add = () => {
@@ -14,6 +15,10 @@ const AddToDo = ({myProp}) => {
 
   const updateTodo = (e) =>{
     setTodo(e.target.value);
+  }
+
+  const clearTodo = () => {
+    myProp.clear();
   }
   
   return (
@@ -31,6 +36,10 @@ const AddToDo = ({myProp}) => {
           <input type="submit" value="ADD" onClick={add}></input>
         
         </span>
+        <span>
+          <input type="submit" value="Clear" onClick={clearTodo}></input>
+        
+        </span>
       </div>
       <div className="list">
         {myProp.todoArray.map((element) => {
@@ -39,6 +48,6 @@ const AddToDo = ({myProp}) => {
       </div>
     </div>
   );
-};
+})
 
 export default AddToDo;
