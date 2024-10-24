@@ -5,11 +5,15 @@ const AddToDo = () => {
   const [list, setList] = useState([]);
   const [todo, setTodo] = useState();
 
-  const Add = () => {
-    if (todo != ""){
+  const add = () => {
+    if (todo !== ""){
     setList([...list, todo]);
     setTodo("");}
   };
+
+  const updateTodo = (e) =>{
+    setTodo(e.target.value);
+  }
   
   return (
     <div className="container">
@@ -19,13 +23,11 @@ const AddToDo = () => {
           <input
             type="text"
             value={todo}
-            onChange={(e) => {
-              setTodo(e.target.value);
-            }}
+            onChange={updateTodo}
           />
         </span>
         <span>
-          <input type="submit" value="ADD" onClick={Add}></input>
+          <input type="submit" value="ADD" onClick={add}></input>
         
         </span>
       </div>
