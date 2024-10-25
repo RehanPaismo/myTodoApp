@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <AddToDo myProps={toDo}/>
+      <AddToDo props={toDo}/>
     </>
   )
 }
