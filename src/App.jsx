@@ -1,11 +1,11 @@
 import AddToDo from './Components/AddToDo'
-import {toDoClass} from './Components/TodoClass'
+import {toDo} from './Components/TodoClass'
 function App() {
   
 
   return (
     <>
-      <AddToDo myProp={toDoClass}/>
+      <AddToDo myProps={toDo}/>
     </>
   )
 }
