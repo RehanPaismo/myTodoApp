@@ -1,18 +1,30 @@
+import { observer } from "mobx-react";
 import React, { useState } from "react";
 import "./styles.css";
 
-const AddToDo = () => {
-  const [list, setList] = useState([]);
-  const [todo, setTodo] = useState();
+const AddToDo = observer (({myProps}) => {
+  const [todo, setTodo] = useState('');
 
-  const add = () => {
+  const addTodo = () => {
     if (todo !== ""){
-    setList([...list, todo]);
+    myProps.addToDo(todo);
     setTodo("");}
   };
 
   const updateTodo = (e) =>{
     setTodo(e.target.value);
+  }
+
+  const clearTodo = () => {
+    myProps.clear();
+  }
+  const printToDoList = () =>{
+    
+    if (myProps.todoItems.length !== 0){
+      return myProps.todoItems.map((element) => {
+        return <div className="items" key={element.id}>{element.item}</div>;
+      })
+    }
   }
   
   return (
@@ -27,17 +39,19 @@ const AddToDo = () => {
           />
         </span>
         <span>
-          <input type="submit" value="ADD" onClick={add}></input>
+          <input type="submit" value="ADD" onClick={addTodo}/>
+        
+        </span>
+        <span>
+          <input type="submit" value="Clear" onClick={clearTodo}/>
         
         </span>
       </div>
       <div className="list">
-        {list.map((element, index) => {
-          return <div className="items" key={index}>{element}</div>;
-        })}
+        {printToDoList()}
       </div>
     </div>
   );
-};
+})
 
 export default AddToDo;
