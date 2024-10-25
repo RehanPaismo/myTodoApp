@@ -1,22 +1,22 @@
 import {action, makeObservable, observable} from 'mobx'
-class ToDoClass {
+class ToDo {
    
-    todoArray = [];
+    todoItems = [];
     constructor(){
         makeObservable(this, {
-            todoArray:observable,
+            todoItems:observable,
             addToDo:action
         })
     }
     addToDo = (todoInput) => {
-        const todoObj ={
+        const todo ={
             id: Math.random(),
             item: todoInput
         }
-        this.todoArray.push(todoObj);
+        this.todoItems.push(todo);
     }
     clear = () =>{
-        this.todoArray = [];
+        this.todoItems = [];
     }
 }
-export const toDoClass = new ToDoClass();
+export const toDo = new ToDo();
